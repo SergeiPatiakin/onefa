@@ -1,0 +1,11 @@
+# Created by https://www.toptal.com/developers/gitignore/api/rust
+
+### be
+target/
+**/*.rs.bk
+
+### fe
+node_modules/
+dist/
+
+untracked/
