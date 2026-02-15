@@ -2,6 +2,8 @@
 
 Simple web app for managing TOTP keys and codes
 
+<img src = "docs/screenshot1.png" width = 507>
+
 ## Operating Onefa
 
 Onefa depends on:
