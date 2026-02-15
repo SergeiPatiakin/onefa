@@ -1,6 +1,14 @@
 # Onefa
 
-Simple web app for managing TOTP keys and codes
+Onefa - fight back against forced MFA!
+
+Authentication for online accounts is a tradeoff between security and convenience. The tradeoff for your accounts should be your decision - you might choose multi-factor
+authentication for some accounts and simple password authentication for others.
+
+Unfortunately more and more online services are forcing the use of multi-factor
+authentication without any regard for user choice.
+
+Onefa is an online authenticator app that you can access from any browser, without needing additional devices.
 
 <img src = "docs/screenshot1.png" width = 507>
 
