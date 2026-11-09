@@ -7,11 +7,15 @@ use tokio::sync::OnceCell;
 
 use crate::{config::get_onefa_config, error::OnefaError};
 
+// Keycloak client ID used by the Onefa frontend. Only tokens issued to this client are accepted.
+const ONEFA_CLIENT_ID: &str = "1fa";
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Claims {
     pub sub: String,
     pub email: String,
     pub exp: u64,
+    pub azp: String,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
@@ -101,5 +105,13 @@ pub async fn verify_auth_claims(
 
     let token_data = jsonwebtoken::decode::<Claims>(jwt, get_decoding_key().await, &validation)
         .map_err(|_e| OnefaError::Unauthorized)?;
+
+    if token_data.claims.azp != ONEFA_CLIENT_ID {
+        println!(
+            "Rejected token issued to client {:?} (sub {})",
+            token_data.claims.azp, token_data.claims.sub
+        );
+        return Err(OnefaError::Unauthorized);
+    }
     Ok(token_data.claims)
 }
